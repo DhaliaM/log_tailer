@@ -1,0 +1,14 @@
+[build]
+public_url = "/"
+
+[[copy]]
+source = "public/manifest.webmanifest"
+target = "manifest.webmanifest"
+
+[[copy]]
+source = "public/icons"
+target = "icons"
+
+[[copy]]
+source = "public/service-worker.js"
+target = "service-worker.js"

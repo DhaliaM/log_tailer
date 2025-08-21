@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="de">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="manifest" href="/manifest.webmanifest">
+
+    <link data-trunk rel="copy-dir"  href="public">
+
+    <meta name="theme-color" content="#111111">
+    <title>Log Tailer PWA</title>
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#0f172a" />
+    <link rel="icon" href="/icons/icon-144.png" />
+    <!-- Trunk builds & injects the wasm/js -->
+    <link data-trunk rel="rust" data-crate-type="cdylib" />
+    <link data-trunk rel="copy-dir" href="public" />
+</head>
+<body>
+<noscript>Diese App benötigt JavaScript.</noscript>
+<div id="app"></div>
+<div class="pwa-actions" style="margin: .75rem 0;">
+    <button id="btn-install"   hidden>Installieren</button>
+    <button id="btn-uninstall" hidden>Deinstallieren</button>
+    <span id="pwa-msg" style="margin-left:.5rem; opacity:.7; font-size:.9em;"></span>
+</div>
+<script>
+    if ("serviceWorker" in navigator) {
+        // ⬅️ sofort registrieren (nicht erst nach 'load')
+        navigator.serviceWorker.register("/service-worker.js");
+
+        // Wenn der SW die Seite erstmals kontrolliert, einmal neu laden,
+        // damit alle Requests unter SW-Kontrolle laufen.
+        navigator.serviceWorker.addEventListener("controllerchange", () => {
+            location.reload();
+        });
+
+        // Nach 'ready' aktuelle Ressourcen (js/wasm/css) dem SW zum Cachen schicken
+        navigator.serviceWorker.ready.then(reg => {
+            const urls = performance.getEntriesByType("resource")
+                .map(e => e.name)
+                .filter(u =>
+                    u.startsWith(location.origin) &&
+                    (u.endsWith(".js") || u.endsWith(".wasm") || u.endsWith(".css"))
+                );
+            reg.active?.postMessage({ type: "CACHE_URLS", urls });
+        });
+    }
+
+    (function () {
+        const btnInstall   = document.getElementById("btn-install");
+        const btnUninstall = document.getElementById("btn-uninstall");
+        const msg          = document.getElementById("pwa-msg");
+        let deferredPrompt = null;
+
+        const isStandalone = () =>
+            (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) ||
+            (navigator.standalone === true);
+
+        // SW früh registrieren (falls noch nicht)
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("/service-worker.js");
+            navigator.serviceWorker.addEventListener("controllerchange", () => location.reload());
+            navigator.serviceWorker.ready.then(reg => {
+                // Warmup: aktuelle JS/WASM/CSS dem SW zum Cachen geben (für Offline-Start)
+                const urls = performance.getEntriesByType("resource")
+                    .map(e => e.name)
+                    .filter(u => u.startsWith(location.origin) && (u.endsWith(".js") || u.endsWith(".wasm") || u.endsWith(".css")));
+                reg.active?.postMessage({ type: "CACHE_URLS", urls });
+            });
+        }
+
+        // Install-Prompt abfangen
+        window.addEventListener("beforeinstallprompt", (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            if (!isStandalone()) btnInstall.hidden = false;
+            msg.textContent = "Installierbar";
+        });
+
+        window.addEventListener("appinstalled", () => {
+            deferredPrompt = null;
+            btnInstall.hidden = true;
+            btnUninstall.hidden = false;
+            msg.textContent = "Installiert";
+        });
+
+        // Initialzustand der Buttons
+        function syncButtons() {
+            if (isStandalone()) {
+                btnInstall.hidden = true;
+                btnUninstall.hidden = false;
+                msg.textContent = "Installiert";
+            } else {
+                btnUninstall.hidden = true;
+                // Install-Button nur zeigen, wenn der Browser das Event liefert
+                if (deferredPrompt) {
+                    btnInstall.hidden = false;
+                    msg.textContent = "Installierbar";
+                } else {
+                    btnInstall.hidden = true;
+                    msg.textContent = ""; // z.B. Safari iOS hat kein beforeinstallprompt
+                }
+            }
+        }
+        syncButtons();
+
+        // Klick: Installieren
+        btnInstall.addEventListener("click", async () => {
+            if (!deferredPrompt) {
+                msg.textContent = "Installieren wird von diesem Browser hier nicht unterstützt.";
+                return;
+            }
+            deferredPrompt.prompt();
+            const choice = await deferredPrompt.userChoice;
+            if (choice.outcome === "accepted") {
+                msg.textContent = "Installation gestartet…";
+            } else {
+                msg.textContent = "Installation abgebrochen.";
+            }
+            deferredPrompt = null;
+            btnInstall.hidden = true;
+        });
+
+        // Klick: „Deinstallieren“ (zurücksetzen + Hinweis)
+        btnUninstall.addEventListener("click", async () => {
+            msg.textContent = "Zurücksetzen…";
+
+            try {
+                // 1) SW abmelden
+                if ("serviceWorker" in navigator) {
+                    const regs = await navigator.serviceWorker.getRegistrations();
+                    await Promise.all(regs.map(r => r.unregister()));
+                }
+                // 2) Caches löschen
+                if ("caches" in window) {
+                    const names = await caches.keys();
+                    await Promise.all(names.map(n => caches.delete(n)));
+                }
+                // 3) IndexedDB löschen (bekannte DBs)
+                if (indexedDB && indexedDB.deleteDatabase) {
+                    // deine DB heißt z.B. "logtailer_db"
+                    try { indexedDB.deleteDatabase("logtailer_db"); } catch {}
+                    // optional: alle DBs (nicht überall verfügbar)
+                    if (indexedDB.databases) {
+                        const dbs = await indexedDB.databases();
+                        await Promise.all((dbs || []).map(d => d?.name && indexedDB.deleteDatabase(d.name)));
+                    }
+                }
+                // 4) Storage/LocalStorage optional
+                try { localStorage.clear(); sessionStorage.clear(); } catch {}
+
+                // 5) Hinweis für echtes Entfernen der OS-Verknüpfung
+                if (isStandalone()) {
+                    alert("Die App-Daten wurden gelöscht. Um die App-Verknüpfung vollständig zu entfernen, lösche sie im OS/Browser (App-Icon lange drücken → Entfernen).");
+                }
+
+                msg.textContent = "Zurückgesetzt.";
+            } catch (e) {
+                console.error(e);
+                msg.textContent = "Fehler beim Zurücksetzen (siehe Konsole).";
+            } finally {
+                // Neu laden, damit wieder ohne SW läuft
+                setTimeout(() => location.reload(), 300);
+            }
+        });
+
+        // Bei Sichtbarkeitswechsel Buttons aktualisieren (z.B. nach Install)
+        document.addEventListener("visibilitychange", () => {
+            if (!document.hidden) syncButtons();
+        });
+    })();
+</script>
+</body>
+</html>
