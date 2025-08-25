@@ -4,7 +4,7 @@ use crate::services::{fs_access, tailer};
 use js_sys::{Boolean, Reflect};
 use leptos::prelude::{
     event_target_value, on_cleanup, signal_local, ClassAttribute, Effect, ElementChild, For, Get,
-    OnAttribute, ReadSignal, RwSignal, Set, Show, Update,
+    OnAttribute, ReadSignal, RwSignal, Set, Show, Update, GetUntracked,
 };
 use leptos::task::spawn_local;
 use leptos::*;
@@ -67,7 +67,7 @@ pub fn LogTailer() -> impl IntoView {
 
         move |_| {
             spawn_local(async move {
-                if let Some(h) = handle.get() {
+                if let Some(h) = handle.get_untracked() {
                     // Handle kann FileSystemFileHandle ODER direkt File/Blob sein
                     let file_js =
                         if Reflect::has(&h, &JsValue::from_str("getFile")).unwrap_or(false) {
@@ -189,33 +189,43 @@ pub fn LogTailer() -> impl IntoView {
     };
 
     // Polling starten, sobald Handle + DB da sind (und noch nicht gestartet)
-    Effect::new({
-        let handle = handle.clone();
-        let db = db.clone();
-        let offset = offset.clone();
-        let stats = stats.clone();
-        let started = started.clone();
-        let running_flag = running_flag.clone();
-        let cancel_token = cancel_token.clone();
-        move |_| {
-            if started.get() {
-                return;
-            }
-            if let (Some(h), Some(d)) = (handle.get(), db.get()) {
-                started.set(true);
-                tailer::start_polling(
-                    h.clone(),
-                    offset,
-                    stats,
-                    d.clone(),
-                    running_flag.clone(),
-                    cancel_token.clone(),
-                    dbg_lines,
-                    dbg_events,
-                );
-            }
-        }
-    });
+        // Polling starten, sobald Handle + DB da sind (und noch nicht gestartet)
+            Effect::new({
+                let handle = handle.clone();
+                let db = db.clone();
+                let offset = offset.clone();
+                let stats = stats.clone();
+                let started = started.clone();
+                let running_flag = running_flag.clone();
+                let cancel_token = cancel_token.clone();
+                move |_| {
+                    // started ist selbst ein Signal → das ist okay
+                    if started.get() {
+                        return;
+                    }
+
+                    // ⬇️ hier reaktiv im Effekt lesen, nicht außerhalb
+                    let h_opt = handle.get();
+                    let d_opt = db.get();
+
+                    if let (Some(h), Some(d)) = (h_opt, d_opt) {
+                        started.set(true);
+                        tailer::start_polling(
+                            h.clone(),
+                            offset,
+                            stats,
+                            d.clone(),
+                            running_flag.clone(),
+                            cancel_token.clone(),
+                            dbg_lines,
+                            dbg_events,
+                        );
+                    }
+                }
+            });
+
+
+
 
     view! {
       <div class="mt-4 space-x-2">

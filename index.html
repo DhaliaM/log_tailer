@@ -3,18 +3,19 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#111111">
-    <title>Log Tailer PWA</title>
     <meta name="theme-color" content="#0f172a" />
+    <title>Log Tailer PWA</title>
     <link rel="icon" href="/icons/icon-144.png" />
-    <!-- Trunk builds & injects the wasm/js -->
 
+    <!-- Manifest & Assets -->
     <link rel="manifest" href="public/manifest.webmanifest">
     <link data-trunk rel="copy-file" href="public/manifest.webmanifest">
     <link data-trunk rel="copy-file" href="public/service-worker.js">
     <link data-trunk rel="copy-dir"  href="public/icons">
+    <link data-trunk rel="copy-dir"  href="public" />
+
+    <!-- Wichtig: hier sagt man Trunk, dass er das Rust-Projekt bauen soll -->
     <link data-trunk rel="rust" data-crate-type="cdylib" />
-    <link data-trunk rel="copy-dir" href="public" />
 </head>
 <body>
 <noscript>Diese App benötigt JavaScript.</noscript>
