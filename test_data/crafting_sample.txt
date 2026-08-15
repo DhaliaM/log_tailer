@@ -1,0 +1,26 @@
+2026-01-17 22:49:15 [System] [] You received Super Alloy Mountings x (1) Value: 0.7000 PED
+2026-01-17 22:49:15 [System] [] You received Metal Residue x (44) Value: 0.4400 PED
+2026-01-17 22:49:15 [System] [] You received Shrapnel x (98) Value: 0.0098 PED
+2026-01-17 22:49:19 [System] [] You received Super Alloy Mountings x (1) Value: 0.7000 PED
+2026-01-17 22:49:19 [System] [] You received Metal Residue x (36) Value: 0.3600 PED
+2026-01-17 22:49:19 [System] [] You received Shrapnel x (90) Value: 0.0090 PED
+2026-01-17 22:49:19 [System] [] Your blueprint Quality Rating has improved
+2026-01-17 22:49:23 [System] [] You received Robot Heat Sinks x (4) Value: 0.3200 PED
+2026-01-17 22:49:23 [System] [] You received Durable Hood x (12) Value: 0.4992 PED
+2026-01-17 22:49:23 [System] [] You received Metal Residue x (12) Value: 0.1200 PED
+2026-01-17 22:49:23 [System] [] You received Shrapnel x (71) Value: 0.0071 PED
+2026-01-17 22:49:27 [System] [] You received Robot Heat Sinks x (3) Value: 0.2400 PED
+2026-01-17 22:49:27 [System] [] You received Durable Hood x (8) Value: 0.3328 PED
+2026-01-17 22:49:27 [System] [] You received Shrapnel x (3) Value: 0.0003 PED
+2026-01-17 22:49:27 [System] [] Your blueprint Quality Rating has improved
+2026-01-17 22:51:55 [System] [] You received Robot Component Residue x (22) Value: 0.2200 PED
+2026-01-17 22:51:55 [System] [] You received Shrapnel x (72) Value: 0.0072 PED
+2026-01-17 22:52:36 [System] [] You received Metal Residue x (93) Value: 0.9300 PED
+2026-01-17 22:52:56 [System] [] You received Metal Residue x (53) Value: 0.5300 PED
+2026-01-17 22:52:56 [System] [] You received Shrapnel x (76) Value: 0.0076 PED
+2026-01-17 22:54:06 [System] [] You have gained 0.7484 experience in your Manufacture Metal Equipment skill
+2026-01-17 22:54:06 [System] [] You have gained 0.4957 experience in your Engineering skill
+2026-01-17 22:54:06 [System] [] You received Durable Hood x (12) Value: 0.4992 PED
+2026-01-17 22:54:06 [System] [] You received Robot Heat Sinks x (2) Value: 0.1600 PED
+2026-01-17 22:54:06 [System] [] You received Metal Residue x (19) Value: 0.1900 PED
+2026-01-17 22:54:06 [System] [] You received Shrapnel x (7) Value: 0.0007 PED

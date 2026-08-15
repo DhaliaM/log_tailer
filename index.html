@@ -9,6 +9,7 @@
 
     <!-- Manifest & Assets -->
     <link rel="manifest" href="public/manifest.webmanifest">
+    <link rel="stylesheet" href="/public/style.css">
     <link data-trunk rel="copy-file" href="public/manifest.webmanifest">
     <link data-trunk rel="copy-file" href="public/service-worker.js">
     <link data-trunk rel="copy-dir"  href="public/icons">
@@ -26,6 +27,51 @@
     <span id="pwa-msg" style="margin-left:.5rem; opacity:.7; font-size:.9em;"></span>
 </div>
 <script>
+// ── OCR-Helfer (Tesseract.js lazy-load) ──────────────────────────────────────
+window._tesseractLoaded = false;
+window.loadTesseract = function () {
+    return new Promise(function (resolve, reject) {
+        if (window._tesseractLoaded && window.Tesseract) { resolve(); return; }
+        var s = document.createElement('script');
+        s.src = 'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';
+        s.onload  = function () { window._tesseractLoaded = true; resolve(); };
+        s.onerror = function () { reject(new Error('Tesseract.js nicht ladbar')); };
+        document.head.appendChild(s);
+    });
+};
+// Graustufen + Kontrastverstärkung + mind. 1400px Breite
+window.preprocessOcrImage = function (dataUrl) {
+    return new Promise(function (resolve) {
+        var img = new Image();
+        img.onload = function () {
+            var scale = Math.max(1.0, 1400 / img.width);
+            var canvas = document.createElement('canvas');
+            canvas.width  = Math.round(img.width  * scale);
+            canvas.height = Math.round(img.height * scale);
+            var ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            var id = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            var d  = id.data;
+            for (var i = 0; i < d.length; i += 4) {
+                var g = 0.299 * d[i] + 0.587 * d[i+1] + 0.114 * d[i+2];
+                var e = Math.min(255, Math.max(0, (g - 100) * 1.8 + 100));
+                d[i] = d[i+1] = d[i+2] = e;
+            }
+            ctx.putImageData(id, 0, 0);
+            resolve(canvas.toDataURL('image/png'));
+        };
+        img.src = dataUrl;
+    });
+};
+// Hauptfunktion – gibt OCR-Rohtext zurück
+window.ocrImage = async function (dataUrl) {
+    await window.loadTesseract();
+    var processed = await window.preprocessOcrImage(dataUrl);
+    var result = await Tesseract.recognize(processed, 'eng');
+    return result.data.text;
+};
+// ─────────────────────────────────────────────────────────────────────────────
+
     if ("serviceWorker" in navigator) {
         // ⬅️ sofort registrieren (nicht erst nach 'load')
         navigator.serviceWorker.register("/service-worker.js");

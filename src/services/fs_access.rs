@@ -55,6 +55,7 @@ extern "C" {
 }
 
 /// Rust-Hilfsfunktion: JS-String -> bool
+#[allow(dead_code)]
 pub async fn ensure_read_permission(handle: &JsValue) -> bool {
     match ensureReadPermission(handle).await {
         Ok(v) => v.as_string().map(|s| s == "granted").unwrap_or(false),

@@ -1,0 +1,99 @@
+2026-06-07 19:18:11 [System] [] You received Shrapnel x (5633) Value: 0.5633 PED
+2026-06-07 19:18:11 [System] [] You received Paint Can (Pink) x (17) Value: 1.36 PED
+2026-06-07 19:18:16 [System] [] Critical hit - Additional damage! You inflicted 192.0 points of damage
+2026-06-07 19:18:16 [System] [] You inflicted 55.6 points of damage
+2026-06-07 19:18:17 [System] [] You inflicted 72.8 points of damage
+2026-06-07 19:18:19 [System] [] You inflicted 60.4 points of damage
+2026-06-07 19:18:20 [System] [] You inflicted 51.3 points of damage
+2026-06-07 19:18:20 [System] [] You inflicted 88.6 points of damage
+2026-06-07 19:18:20 [System] [] You have gained 0.0133 experience in your BLP Weaponry Technology skill
+2026-06-07 19:18:21 [System] [] You inflicted 69.2 points of damage
+2026-06-07 19:18:21 [System] [] You have gained 0.0067 experience in your BLP Weaponry Technology skill
+2026-06-07 19:18:22 [System] [] You inflicted 80.5 points of damage
+2026-06-07 19:18:23 [System] [] You inflicted 87.7 points of damage
+2026-06-07 19:18:24 [System] [] Critical hit - Additional damage! You inflicted 177.5 points of damage
+2026-06-07 19:18:24 [System] [] You have gained 0.0055 experience in your Rifle skill
+2026-06-07 19:18:24 [System] [] You have gained 0.2690 experience in your Commando skill
+2026-06-07 19:18:25 [System] [] The target Dodged your attack
+2026-06-07 19:18:25 [System] [] The target Dodged your attack
+2026-06-07 19:18:26 [System] [] You inflicted 59.8 points of damage
+2026-06-07 19:18:26 [System] [] You have gained 0.0128 experience in your Wounding skill
+2026-06-07 19:18:27 [System] [] You inflicted 57.2 points of damage
+2026-06-07 19:18:28 [Globals] [] Dr Zana Maselutza killed a creature (Sicarius Nexus) with a value of 221 PED!
+2026-06-07 19:18:28 [System] [] You have gained 0.0267 experience in your BLP Weaponry Technology skill
+2026-06-07 19:18:28 [System] [] You inflicted 91.0 points of damage
+2026-06-07 19:18:28 [System] [] You have gained 0.0272 experience in your Combat Sense skill
+2026-06-07 19:18:28 [System] [] You have gained 0.0760 Serendipity
+2026-06-07 19:18:30 [System] [] You received Shrapnel x (2219) Value: 0.2219 PED
+2026-06-07 19:18:30 [System] [] You received Robot Component Residue x (145) Value: 1.45 PED
+2026-06-07 19:18:30 [System] [] You inflicted 85.9 points of damage
+2026-06-07 19:18:35 [System] [] The target Dodged your attack
+2026-06-07 19:18:36 [System] [] You inflicted 79.7 points of damage
+2026-06-07 19:18:37 [System] [] You inflicted 82.5 points of damage
+2026-06-07 19:18:38 [System] [] You inflicted 73.7 points of damage
+2026-06-07 19:18:39 [System] [] Critical hit - Additional damage! You inflicted 162.8 points of damage
+2026-06-07 19:18:39 [System] [] The target Dodged your attack
+2026-06-07 19:18:40 [System] [] The target Dodged your attack
+2026-06-07 19:18:41 [System] [] You inflicted 58.3 points of damage
+2026-06-07 19:18:41 [System] [] You have gained 0.0328 experience in your Inflict Ranged Damage skill
+2026-06-07 19:18:42 [System] [] You inflicted 85.1 points of damage
+2026-06-07 19:18:43 [System] [] You inflicted 51.6 points of damage
+2026-06-07 19:18:44 [System] [] You inflicted 50.1 points of damage
+2026-06-07 19:18:44 [System] [] You inflicted 79.7 points of damage
+2026-06-07 19:18:45 [System] [] You inflicted 77.1 points of damage
+2026-06-07 19:18:46 [System] [] You have gained 0.0348 experience in your Marksmanship skill
+2026-06-07 19:18:46 [System] [] You inflicted 54.0 points of damage
+2026-06-07 19:18:48 [System] [] You received Shrapnel x (5166) Value: 0.5166 PED
+2026-06-07 19:18:48 [System] [] You received Robot Component Residue x (152) Value: 1.52 PED
+2026-06-07 19:18:49 [System] [] You inflicted 88.2 points of damage
+2026-06-07 19:18:50 [System] [] You inflicted 84.3 points of damage
+2026-06-07 19:18:51 [System] [] You inflicted 65.2 points of damage
+2026-06-07 19:18:52 [System] [] You inflicted 56.7 points of damage
+2026-06-07 19:18:53 [System] [] Critical hit - Additional damage! You inflicted 183.3 points of damage
+2026-06-07 19:18:54 [System] [] You inflicted 58.8 points of damage
+2026-06-07 19:18:55 [System] [] You inflicted 54.9 points of damage
+2026-06-07 19:18:56 [System] [] You inflicted 54.5 points of damage
+2026-06-07 19:18:57 [System] [] You inflicted 95.7 points of damage
+2026-06-07 19:18:59 [System] [] You inflicted 78.7 points of damage
+2026-06-07 19:18:59 [System] [] You inflicted 74.4 points of damage
+2026-06-07 19:19:00 [System] [] You inflicted 88.2 points of damage
+2026-06-07 19:19:01 [System] [] You inflicted 68.4 points of damage
+2026-06-07 19:19:01 [System] [] You have gained 0.0067 experience in your BLP Weaponry Technology skill
+2026-06-07 19:19:02 [System] [] You inflicted 52.5 points of damage
+2026-06-07 19:19:03 [System] [] You inflicted 59.2 points of damage
+2026-06-07 19:19:04 [System] [] You inflicted 64.3 points of damage
+2026-06-07 19:19:04 [System] [] You took 57.1 points of damage
+2026-06-07 19:19:04 [System] [] You inflicted 80.0 points of damage
+2026-06-07 19:19:05 [System] [] You received Shrapnel x (10916) Value: 1.09 PED
+2026-06-07 19:19:07 [System] [] Received Effect Over Time: Heal
+2026-06-07 19:19:08 [System] [] You healed yourself 7.9 points
+2026-06-07 19:19:10 [System] [] You healed yourself 16.7 points
+2026-06-07 19:19:13 [System] [] You inflicted 53.0 points of damage
+2026-06-07 19:19:13 [System] [] You healed yourself 16.7 points
+2026-06-07 19:19:14 [System] [] You inflicted 55.2 points of damage
+2026-06-07 19:19:14 [System] [] The target Dodged your attack
+2026-06-07 19:19:15 [System] [] You inflicted 54.4 points of damage
+2026-06-07 19:19:16 [System] [] You inflicted 66.7 points of damage
+2026-06-07 19:19:17 [System] [] The target Dodged your attack
+2026-06-07 19:19:18 [System] [] You inflicted 70.9 points of damage
+2026-06-07 19:19:18 [System] [] You have gained 0.0067 experience in your BLP Weaponry Technology skill
+2026-06-07 19:19:18 [System] [] Critical hit - Additional damage! You inflicted 206.6 points of damage
+2026-06-07 19:19:19 [System] [] You inflicted 98.0 points of damage
+2026-06-07 19:19:20 [System] [] You inflicted 87.8 points of damage
+2026-06-07 19:19:21 [System] [] You inflicted 52.5 points of damage
+2026-06-07 19:19:22 [System] [] The target Dodged your attack
+2026-06-07 19:19:22 [System] [] You inflicted 61.4 points of damage
+2026-06-07 19:19:23 [System] [] You inflicted 66.0 points of damage
+2026-06-07 19:19:24 [System] [] You inflicted 63.9 points of damage
+2026-06-07 19:19:25 [System] [] You inflicted 73.6 points of damage
+2026-06-07 19:19:26 [System] [] You inflicted 70.9 points of damage
+2026-06-07 19:19:26 [Globals] [] Harry Hally Alliandes killed a creature (Jeef Qaher CUHOF Defender) with a value of 380 PED! A record has been added to the Hall of Fame!
+2026-06-07 19:19:27 [System] [] You inflicted 90.0 points of damage
+2026-06-07 19:19:27 [System] [] You inflicted 52.1 points of damage
+2026-06-07 19:19:28 [System] [] You inflicted 95.0 points of damage
+2026-06-07 19:19:30 [System] [] You received Shrapnel x (12306) Value: 1.23 PED
+2026-06-07 19:19:49 [System] [] You received Shrapnel x (31666) Value: 3.16 PED
+2026-06-07 19:20:11 [System] [] You received Shrapnel x (3986) Value: 0.3986 PED
+2026-06-07 19:20:11 [System] [] You received Robot Heat Sinks x (22) Value: 1.76 PED
+2026-06-07 19:20:36 [System] [] You received Shrapnel x (27547) Value: 2.75 PED
+2026-06-07 19:20:36 [System] [] You received Shrapnel x (28666) Value: 2.86 PED

@@ -8,3 +8,7 @@ target = "icons"
 [[copy]]
 source = "public/service-worker.js"
 target = "service-worker.js"
+
+[[copy]]
+source = "public/style.css"
+target = "style.css"

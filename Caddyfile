@@ -1,0 +1,16 @@
+{
+    admin off
+    auto_https off
+}
+
+:8080 {
+    bind 127.0.0.1
+
+    root * /root/Projekte/log_tailer/dist
+    file_server
+
+    # SPA-Fallback
+    try_files {path} /index.html
+
+    header Service-Worker-Allowed "/"
+}
